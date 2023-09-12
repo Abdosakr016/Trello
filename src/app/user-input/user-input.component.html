@@ -1,0 +1,42 @@
+<div class="mb-3">
+  <label for="exampleFormControlInput1" class="form-label">Add ToDo</label>
+  <input
+    type="email"
+    class="form-control"
+    id="exampleFormControlInput1"
+    placeholder="Task1"
+    #newItem
+    (keyup.enter)="addItem(newItem.value)"
+    id="addItemInput"
+  />
+</div>
+
+<p-button
+  label="Add"
+  styleClass="p-button-raised p-button-text p-button-success d-flex justify-content-center mx-auto mt-3 border-0"
+  (click)="addItem(newItem.value)"
+></p-button>
+
+<div class="border border-1 border-opacity-25 border-opacity-25 rounded mt-3">
+  <ul class="m-3">
+    <li class="mt-3" *ngFor="let allItem of allItems">
+      <p-card>
+        <span [class.completed]="allItem.done">{{ allItem.description }}</span>
+        <p-button
+          icon="pi pi-times"
+          styleClass="p-button-danger"
+          class="float-end"
+          (click)="DeleteTodo(allItem.id)"
+        ></p-button>
+        <p-toggleButton
+          formControlName="checked"
+          onLabel="Done"
+          offLabel="Progress..."
+          class="float-end pe-2"
+          onclick=""
+          (click)="toggleComplete(allItem.id)"
+        ></p-toggleButton>
+      </p-card>
+    </li>
+  </ul>
+</div>
